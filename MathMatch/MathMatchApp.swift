@@ -10,9 +10,12 @@ import SwiftData
 
 @main
 struct MathMatchApp: App {
+    
+    @StateObject var gameManager = GameManager()
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            Score.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -25,7 +28,8 @@ struct MathMatchApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TitleScreen()
+                .environmentObject(gameManager)
         }
         .modelContainer(sharedModelContainer)
     }

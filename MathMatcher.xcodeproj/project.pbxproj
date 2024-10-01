@@ -58,15 +58,15 @@
 		94C2E23F2CAB455100AEE0EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		94C2E2412CAB46DE00AEE0EE /* RewardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardViewModel.swift; sourceTree = "<group>"; };
 		94C2E2442CAB497200AEE0EE /* AdModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdModalView.swift; sourceTree = "<group>"; };
-		94EB3E782CA5820B00F29608 /* MathMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MathMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		94EB3E782CA5820B00F29608 /* MathMatcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MathMatcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94EB3E7B2CA5820B00F29608 /* MathMatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathMatchApp.swift; sourceTree = "<group>"; };
 		94EB3E7D2CA5820B00F29608 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		94EB3E7F2CA5820B00F29608 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		94EB3E812CA5820C00F29608 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94EB3E842CA5820C00F29608 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		94EB3E8A2CA5820C00F29608 /* MathMatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MathMatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		94EB3E8A2CA5820C00F29608 /* MathMatcherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MathMatcherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94EB3E8E2CA5820C00F29608 /* MathMatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathMatchTests.swift; sourceTree = "<group>"; };
-		94EB3E942CA5820C00F29608 /* MathMatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MathMatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		94EB3E942CA5820C00F29608 /* MathMatcherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MathMatcherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94EB3E982CA5820C00F29608 /* MathMatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathMatchUITests.swift; sourceTree = "<group>"; };
 		94EB3E9A2CA5820C00F29608 /* MathMatchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathMatchUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		94EB3EA82CA582C100F29608 /* TitleScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScreen.swift; sourceTree = "<group>"; };
@@ -152,9 +152,9 @@
 		94EB3E792CA5820B00F29608 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				94EB3E782CA5820B00F29608 /* MathMatch.app */,
-				94EB3E8A2CA5820C00F29608 /* MathMatchTests.xctest */,
-				94EB3E942CA5820C00F29608 /* MathMatchUITests.xctest */,
+				94EB3E782CA5820B00F29608 /* MathMatcher.app */,
+				94EB3E8A2CA5820C00F29608 /* MathMatcherTests.xctest */,
+				94EB3E942CA5820C00F29608 /* MathMatcherUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -246,9 +246,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		94EB3E772CA5820B00F29608 /* MathMatch */ = {
+		94EB3E772CA5820B00F29608 /* MathMatcher */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 94EB3E9E2CA5820C00F29608 /* Build configuration list for PBXNativeTarget "MathMatch" */;
+			buildConfigurationList = 94EB3E9E2CA5820C00F29608 /* Build configuration list for PBXNativeTarget "MathMatcher" */;
 			buildPhases = (
 				94EB3E742CA5820B00F29608 /* Sources */,
 				94EB3E752CA5820B00F29608 /* Frameworks */,
@@ -258,17 +258,17 @@
 			);
 			dependencies = (
 			);
-			name = MathMatch;
+			name = MathMatcher;
 			packageProductDependencies = (
 				94C2E23D2CAB434400AEE0EE /* GoogleMobileAds */,
 			);
 			productName = MathMatch;
-			productReference = 94EB3E782CA5820B00F29608 /* MathMatch.app */;
+			productReference = 94EB3E782CA5820B00F29608 /* MathMatcher.app */;
 			productType = "com.apple.product-type.application";
 		};
-		94EB3E892CA5820C00F29608 /* MathMatchTests */ = {
+		94EB3E892CA5820C00F29608 /* MathMatcherTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 94EB3EA12CA5820C00F29608 /* Build configuration list for PBXNativeTarget "MathMatchTests" */;
+			buildConfigurationList = 94EB3EA12CA5820C00F29608 /* Build configuration list for PBXNativeTarget "MathMatcherTests" */;
 			buildPhases = (
 				94EB3E862CA5820C00F29608 /* Sources */,
 				94EB3E872CA5820C00F29608 /* Frameworks */,
@@ -279,14 +279,14 @@
 			dependencies = (
 				94EB3E8C2CA5820C00F29608 /* PBXTargetDependency */,
 			);
-			name = MathMatchTests;
+			name = MathMatcherTests;
 			productName = MathMatchTests;
-			productReference = 94EB3E8A2CA5820C00F29608 /* MathMatchTests.xctest */;
+			productReference = 94EB3E8A2CA5820C00F29608 /* MathMatcherTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		94EB3E932CA5820C00F29608 /* MathMatchUITests */ = {
+		94EB3E932CA5820C00F29608 /* MathMatcherUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 94EB3EA42CA5820C00F29608 /* Build configuration list for PBXNativeTarget "MathMatchUITests" */;
+			buildConfigurationList = 94EB3EA42CA5820C00F29608 /* Build configuration list for PBXNativeTarget "MathMatcherUITests" */;
 			buildPhases = (
 				94EB3E902CA5820C00F29608 /* Sources */,
 				94EB3E912CA5820C00F29608 /* Frameworks */,
@@ -297,9 +297,9 @@
 			dependencies = (
 				94EB3E962CA5820C00F29608 /* PBXTargetDependency */,
 			);
-			name = MathMatchUITests;
+			name = MathMatcherUITests;
 			productName = MathMatchUITests;
-			productReference = 94EB3E942CA5820C00F29608 /* MathMatchUITests.xctest */;
+			productReference = 94EB3E942CA5820C00F29608 /* MathMatcherUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -325,7 +325,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 94EB3E732CA5820B00F29608 /* Build configuration list for PBXProject "MathMatch" */;
+			buildConfigurationList = 94EB3E732CA5820B00F29608 /* Build configuration list for PBXProject "MathMatcher" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -341,9 +341,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				94EB3E772CA5820B00F29608 /* MathMatch */,
-				94EB3E892CA5820C00F29608 /* MathMatchTests */,
-				94EB3E932CA5820C00F29608 /* MathMatchUITests */,
+				94EB3E772CA5820B00F29608 /* MathMatcher */,
+				94EB3E892CA5820C00F29608 /* MathMatcherTests */,
+				94EB3E932CA5820C00F29608 /* MathMatcherUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -422,12 +422,12 @@
 /* Begin PBXTargetDependency section */
 		94EB3E8C2CA5820C00F29608 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 94EB3E772CA5820B00F29608 /* MathMatch */;
+			target = 94EB3E772CA5820B00F29608 /* MathMatcher */;
 			targetProxy = 94EB3E8B2CA5820C00F29608 /* PBXContainerItemProxy */;
 		};
 		94EB3E962CA5820C00F29608 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 94EB3E772CA5820B00F29608 /* MathMatch */;
+			target = 94EB3E772CA5820B00F29608 /* MathMatcher */;
 			targetProxy = 94EB3E952CA5820C00F29608 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -628,7 +628,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MathMatch.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MathMatch";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MathMatcher.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MathMatcher";
 			};
 			name = Debug;
 		};
@@ -648,7 +648,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MathMatch.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MathMatch";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MathMatcher.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MathMatcher";
 			};
 			name = Release;
 		};
@@ -691,7 +691,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		94EB3E732CA5820B00F29608 /* Build configuration list for PBXProject "MathMatch" */ = {
+		94EB3E732CA5820B00F29608 /* Build configuration list for PBXProject "MathMatcher" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				94EB3E9C2CA5820C00F29608 /* Debug */,
@@ -700,7 +700,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		94EB3E9E2CA5820C00F29608 /* Build configuration list for PBXNativeTarget "MathMatch" */ = {
+		94EB3E9E2CA5820C00F29608 /* Build configuration list for PBXNativeTarget "MathMatcher" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				94EB3E9F2CA5820C00F29608 /* Debug */,
@@ -709,7 +709,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		94EB3EA12CA5820C00F29608 /* Build configuration list for PBXNativeTarget "MathMatchTests" */ = {
+		94EB3EA12CA5820C00F29608 /* Build configuration list for PBXNativeTarget "MathMatcherTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				94EB3EA22CA5820C00F29608 /* Debug */,
@@ -718,7 +718,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		94EB3EA42CA5820C00F29608 /* Build configuration list for PBXNativeTarget "MathMatchUITests" */ = {
+		94EB3EA42CA5820C00F29608 /* Build configuration list for PBXNativeTarget "MathMatcherUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				94EB3EA52CA5820C00F29608 /* Debug */,

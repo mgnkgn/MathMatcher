@@ -8,11 +8,68 @@
 import SwiftUI
 
 struct ScoreForm: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+	@Environment(
+		\.modelContext
+	) private var context
+	@EnvironmentObject var gameManager: GameManager
+	@State var playerName: String = ""
+	@Binding var scoreModalIsVisible : Bool
+	
+	var body: some View {
+		VStack {
+			HStack {
+				Button {
+					scoreModalIsVisible = false
+				} label: {
+					Text("Cancel")
+				}
+
+			}
+			
+			Form(
+				content: {
+					Section {
+						TextField(
+							"Player name",
+							text: $playerName
+						)
+						
+					}
+					
+					Button(
+						action: {
+							saveScore()
+							scoreModalIsVisible = false
+						},
+						label: {
+							Text(
+								"Done"
+							)
+						})
+					.disabled(
+						playerName.isEmpty
+					)
+				})
+		}
+	}
+	
+	
+	func saveScore() {
+		let playerScore = Score(
+			playerName: playerName,
+			score: gameManager.score
+		)
+		context
+			.insert(
+				playerScore
+			)
+	}
 }
 
 #Preview {
-    ScoreForm()
+	ScoreForm(
+		scoreModalIsVisible: .constant(
+			true
+		)
+	)
 }

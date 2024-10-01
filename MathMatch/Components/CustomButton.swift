@@ -8,11 +8,31 @@
 import SwiftUI
 
 struct CustomButton: View {
+    var title : String
+    var font : Font = .largeTitle
+    var color: Color = .blue
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(
+            title
+        )
+        .font(
+            font
+        )
+        .foregroundStyle(
+            color.gradient
+        )
+        .bold()
+        .padding()
+        .background(
+            RoundedRectangle(
+                cornerRadius:  20
+            )
+            .stroke(color.gradient, lineWidth: 5)
+        )
     }
 }
 
 #Preview {
-    CustomButton()
+    CustomButton(title: "Math Match", font: .title, color: .blue)
 }

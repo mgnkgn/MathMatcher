@@ -8,8 +8,74 @@
 import SwiftUI
 
 struct TitleScreen: View {
+    
+    @EnvironmentObject var gameManager: GameManager
+	@State var isSettingsVisible: Bool = false
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack{
+			HStack {
+				Spacer()
+				Button(action: {
+					isSettingsVisible = true
+				}, label: {
+					Image(systemName: "gearshape")
+				})
+			}
+			.padding()
+			
+			Spacer()
+			
+            VStack {
+                // Title
+                CustomButton(
+                    title: "Math Matcher",
+                    font: .largeTitle,
+                    color: .blue
+                )
+                
+                
+                HStack {
+                    // Play button
+                    NavigationLink(
+                        destination: GameScreen()
+							.onTapGesture {
+								gameManager.generateTargetNumberAndBonusColor()
+							}
+
+                    ){  CustomButton(
+                        title: "Play",
+                        font: .title2,
+                        color: .green
+                    )
+					}
+                    
+                    
+                    
+                    // Scoreboard button
+                    NavigationLink(
+                        destination: ScoreboardScreen()
+                    ) {
+                        CustomButton(
+                            title: "Scoreboard",
+                            font: .title2,
+                            color: .orange
+                        )
+                    }
+                
+                }
+            }
+			
+			Spacer()
+        }
+		.sheet(isPresented: $isSettingsVisible, content: {
+			SettingsForm(isSettingsVisible: $isSettingsVisible)
+		})
+
+        
+                
+            
+            
+
     }
 }
 
