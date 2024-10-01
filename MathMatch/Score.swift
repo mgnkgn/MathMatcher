@@ -9,10 +9,14 @@ import Foundation
 import SwiftData
 
 @Model
-final class Item {
+final class Score {
     var timestamp: Date
-    
-    init(timestamp: Date) {
+	var playerName: String
+	var score: Int
+	
+	init(timestamp: Date, playerName: String, score: Int) {
         self.timestamp = timestamp
+		self.playerName = playerName
+		self.score = score
     }
 }
