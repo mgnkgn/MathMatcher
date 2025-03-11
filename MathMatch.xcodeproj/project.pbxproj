@@ -345,7 +345,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 94EB3E732CA5820B00F29608 /* Build configuration list for PBXProject "MathMixer" */;
+			buildConfigurationList = 94EB3E732CA5820B00F29608 /* Build configuration list for PBXProject "MathMatch" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -719,7 +719,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		94EB3E732CA5820B00F29608 /* Build configuration list for PBXProject "MathMixer" */ = {
+		94EB3E732CA5820B00F29608 /* Build configuration list for PBXProject "MathMatch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				94EB3E9C2CA5820C00F29608 /* Debug */,

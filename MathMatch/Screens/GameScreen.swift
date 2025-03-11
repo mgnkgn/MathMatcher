@@ -185,6 +185,11 @@ struct GameScreen: View {
 				}
 			})
 		})
+		.onDisappear(){
+			gameManager.stopSounds()
+			gameManager.stopTimer()
+			gameManager.restartGame()
+		}
 		.sheet(isPresented: $gameManager.isAdModalVisible) {
 			AdModalView()
 		}

@@ -15,8 +15,8 @@ class RewardedViewModel: NSObject, ObservableObject, GADFullScreenContentDelegat
 	func loadAd() async {
 		do {
 			rewardedAd = try await GADRewardedAd.load(
-//				withAdUnitID: "ca-app-pub-3940256099942544/1712485313", request: GADRequest())
-				withAdUnitID: "ca-app-pub-6297830725022299~8070262052", request: GADRequest())
+				//withAdUnitID: "ca-app-pub-6297830725022299~8070262052", request: GADRequest())
+				withAdUnitID: "ca-app-pub-6297830725022299/8229672364", request: GADRequest())
 			rewardedAd?.fullScreenContentDelegate = self
 		} catch {
 			DispatchQueue.main.async{

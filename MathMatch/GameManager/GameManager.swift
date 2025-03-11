@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import AVFoundation
 
 struct Tile: Identifiable, Equatable {
     let id = UUID().uuidString
@@ -34,13 +35,16 @@ class GameManager: ObservableObject {
         .green
     ]
 	
+	var audioPlayer: AVAudioPlayer?
+	
 	var tileRange = 100
 	@Published var targetRange : Int {
 		didSet {
-			UserDefaults.standard.set(
-				targetRange,
-				forKey: "targetRange"
-			)
+			UserDefaults.standard
+				.set(
+					targetRange,
+					forKey: "targetRange"
+				)
 		}
 	}
 	@Published var targetNumber : Int = 100
@@ -61,9 +65,10 @@ class GameManager: ObservableObject {
 	var colorPoint: Int = 5
 	
 	init() {
-		self.targetRange = UserDefaults.standard.integer(
-			forKey: "targetRange"
-		)
+		self.targetRange = UserDefaults.standard
+			.integer(
+				forKey: "targetRange"
+			)
 		if targetRange == 0 {
 			targetRange = 500
 		}
@@ -75,10 +80,12 @@ class GameManager: ObservableObject {
 	
 	
 	func generateTargetNumberAndBonusColor(){
-		targetNumber = Int.random(
-			in: -targetRange...targetRange
-		)
-		bonusColor = colorOptions.randomElement() ?? .blue
+		targetNumber = Int
+			.random(
+				in: -targetRange...targetRange
+			)
+		bonusColor = colorOptions
+			.randomElement() ?? .blue
 		guessCount = 0
 		bonusColorUsageCount = 0
 		showGameOver = false
@@ -86,7 +93,8 @@ class GameManager: ObservableObject {
 	}
 	
 	func generateGrid(){
-		grid.removeAll()
+		grid
+			.removeAll()
 		
 		for _ in 0..<rows {
 			var row: [Tile] = []
@@ -97,18 +105,21 @@ class GameManager: ObservableObject {
 					in: -tileRange...tileRange
 				)
 				withAnimation{
-					row.append(
-						Tile(
-							value: randomValue,
-							color: colorOptions.randomElement() ?? .blue
+					row
+						.append(
+							Tile(
+								value: randomValue,
+								color: colorOptions
+									.randomElement() ?? .blue
+							)
 						)
-					)
 				}
 			}
 			
-			grid.append(
-				row
-			)
+			grid
+				.append(
+					row
+				)
 		}
 		
 	}
@@ -116,25 +127,31 @@ class GameManager: ObservableObject {
 	func selectTile(
 		tile: Tile
 	){
+		playTapSound()
+		
 		for row in 0..<rows {
 			for col in 0..<columns {
 				if grid[row][col].id == tile.id && grid[row][col].value == tile.value {
-					grid[row][col].isSelected.toggle()
+					grid[row][col].isSelected
+						.toggle()
 					// Check if the tile is already in the selectedTiles array
-					if let index = selectedTiles.firstIndex(where: {
-						$0.id == tile.id
-					}) {
+					if let index = selectedTiles.firstIndex(
+						where: {
+							$0.id == tile.id
+						}) {
 						
 						// Tile is already selected, so remove it from selectedTiles
-						selectedTiles.remove(
-							at: index
-						)
+						selectedTiles
+							.remove(
+								at: index
+							)
 					} else {
 						
 						// Tile is not selected, so add it to selectedTiles
-						selectedTiles.append(
-							grid[row][col]
-						)
+						selectedTiles
+							.append(
+								grid[row][col]
+							)
 					}
 					
 					break
@@ -144,7 +161,8 @@ class GameManager: ObservableObject {
 	}
 	
 	func clearSelectedTiles(){
-		selectedTiles.removeAll()
+		selectedTiles
+			.removeAll()
 	}
 	
 	func performOperation() {
@@ -160,44 +178,52 @@ class GameManager: ObservableObject {
 		
 		switch activeOperation {
 		case .addition:
-			result = selectedTiles.reduce(usersNumber,
-										  {
-				partialResult,
-				tile in
-				partialResult + tile.value
-			})
+			result = selectedTiles
+				.reduce(
+					usersNumber,
+					{
+						partialResult,
+						tile in
+						partialResult + tile.value
+					})
 			
 		case .subtraction:
-			result = selectedTiles.reduce(usersNumber,
-										  {
-				partialResult,
-				tile in
-				partialResult - tile.value
-			})
+			result = selectedTiles
+				.reduce(
+					usersNumber,
+					{
+						partialResult,
+						tile in
+						partialResult - tile.value
+					})
 			
 		case .multiplication:
-			result = selectedTiles.reduce(usersNumber == 0 ? 1 : usersNumber,
-										  {
-				partialResult,
-				tile in
-				partialResult * tile.value
-			})
+			result = selectedTiles
+				.reduce(
+					usersNumber == 0 ? 1 : usersNumber,
+					{
+						partialResult,
+						tile in
+						partialResult * tile.value
+					})
 			
 		case .division:
-			result = selectedTiles.reduce(usersNumber,
-										  {
-				partialResult,
-				tile in
-				tile.value != 0 ? Int(
-					floor(
-						Double(
-							partialResult
-						) / Double(
-							tile.value
-						)
-					)
-				) : partialResult
-			})
+			result = selectedTiles
+				.reduce(
+					usersNumber,
+					{
+						partialResult,
+						tile in
+						tile.value != 0 ? Int(
+							floor(
+								Double(
+									partialResult
+								) / Double(
+									tile.value
+								)
+							)
+						) : partialResult
+					})
 		}
 		
 		popTilesAndDrop()
@@ -216,6 +242,7 @@ class GameManager: ObservableObject {
 	func checkNumbersMatch() {
 		
 		if usersNumber == targetNumber {
+			playSuccessSound()
 			calculateScore()
 			generateTargetNumberAndBonusColor()
 		}
@@ -247,59 +274,125 @@ class GameManager: ObservableObject {
 	
 	// Updates grid and pops tiles and makes the tiles above fall down
 	func popTilesAndDrop() {
-		selectedTiles.forEach { tile in
-			for row in 0..<rows {
-				for col in 0..<columns {
-					if grid[row][col].id == tile.id {
-						if row>0 {
-							for dropRow in (
-								1...row
-							).reversed() {
-								withAnimation {
-									grid[dropRow][col] = grid[dropRow - 1][col]
-									grid[dropRow][col].isSelected = false
+		selectedTiles
+			.forEach { tile in
+				for row in 0..<rows {
+					for col in 0..<columns {
+						if grid[row][col].id == tile.id {
+							if row>0 {
+								for dropRow in (
+									1...row
+								).reversed() {
+									withAnimation {
+										grid[dropRow][col] = grid[dropRow - 1][col]
+										grid[dropRow][col].isSelected = false
+									}
 								}
 							}
+							
+							withAnimation {
+								grid[0][col] = Tile(
+									value: Int
+										.random(
+											in: -100...100
+										),
+									isSelected: false,
+									color: colorOptions
+										.randomElement() ?? .blue
+								)
+							}
+							
 						}
 						
-						withAnimation {
-							grid[0][col] = Tile(
-								value: Int.random(
-									in: -100...100
-								),
-								isSelected: false,
-								color: colorOptions.randomElement() ?? .blue
-							)
-						}
 						
 					}
-					
-					
 				}
 			}
-		}
 	}
 	
 	func startTimer() {
 		remainingTime = 60
 		userHasMatched = false
 		
-		timer?.invalidate()
+		timer?
+			.invalidate()
 		
-		timer = Timer.scheduledTimer(
-			withTimeInterval: 1.0,
-			repeats: true
-		) { [weak self] _ in
-			guard let self = self else {
-				return
+		timer = Timer
+			.scheduledTimer(
+				withTimeInterval: 1.0,
+				repeats: true
+			) { [weak self] _ in
+				guard let self = self else {
+					return
+				}
+				
+				if self.remainingTime > 0 {
+					self.remainingTime -= 1
+				} else {
+					self.timer?
+						.invalidate()
+					self.handleTimeOut()
+					playTimesUpSound()
+				}
 			}
-
-			if self.remainingTime > 0 {
-				self.remainingTime -= 1
-			} else {
-				self.timer?.invalidate()
-				self.handleTimeOut()
+	}
+	
+	func playSuccessSound() {
+		guard let url = Bundle.main.url(
+			forResource: "success_sound",
+			withExtension: "mp3"
+		) else {
+			return
+		}
+		
+		do {
+			audioPlayer = try AVAudioPlayer(
+				contentsOf: url
+			)
+			audioPlayer?.volume = 0.3
+			audioPlayer?
+				.play()
+		} catch let error {
+			print(
+				"Error playing success sound: \(error.localizedDescription)"
+			)
+		}
+	}
+	
+	func playTimesUpSound() {
+		guard let url = Bundle.main.url(
+			forResource: "times_up",
+			withExtension: "mp3"
+		) else {
+			return
+		}
+		
+		if showGameOver || isAdModalVisible {
+			do {
+				audioPlayer = try AVAudioPlayer(
+					contentsOf: url
+				)
+				audioPlayer?
+					.play()
+			} catch let error {
+				print("Error playing success sound: \(error.localizedDescription)")
 			}
+		}
+	}
+	
+	func playTapSound(){
+		guard let url = Bundle.main.url(forResource: "tap_sound", withExtension: "mp3") else {
+			return
+		}
+		
+		do {
+			audioPlayer = try AVAudioPlayer(
+				contentsOf: url
+			)
+			audioPlayer?
+				.play()
+		} catch let error {
+			print("Error playing success sound: \(error.localizedDescription)")
 		}
 	}
 	
@@ -311,6 +404,16 @@ class GameManager: ObservableObject {
 			showGameOver = true
 			isAdModalVisible = false
 		}
+	}
+	
+	func stopTimer() {
+		timer?.invalidate()
+		timer = nil
+	}
+	
+	func stopSounds(){
+		audioPlayer?.stop()
+		audioPlayer = nil
 	}
 	
 	func restartGame() {

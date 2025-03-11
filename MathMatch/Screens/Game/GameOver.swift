@@ -52,8 +52,7 @@ struct GameOver: View {
 					}
 					
 					Button(action: {
-						gameManager.generateGrid()
-						gameManager.generateTargetNumberAndBonusColor()
+						gameManager.restartGame()
 					}) {
 
 						CustomButton(

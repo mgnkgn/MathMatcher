@@ -23,6 +23,9 @@ struct ScoreForm: View {
 				} label: {
 					Text("Cancel")
 				}
+				.padding()
+				
+				Spacer()
 
 			}
 			

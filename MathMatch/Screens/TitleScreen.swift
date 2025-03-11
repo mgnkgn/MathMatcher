@@ -11,14 +11,24 @@ struct TitleScreen: View {
     
     @EnvironmentObject var gameManager: GameManager
 	@State var isSettingsVisible: Bool = false
+	@State var isInfoVisible: Bool = false
+	
     var body: some View {
         NavigationStack{
 			HStack {
+				Button {
+					isInfoVisible = true
+				} label: {
+					Image(systemName: "info.circle")
+						.bold()
+				}
+
 				Spacer()
 				Button(action: {
 					isSettingsVisible = true
 				}, label: {
 					Image(systemName: "gearshape")
+						.bold()
 				})
 			}
 			.padding()
@@ -28,7 +38,7 @@ struct TitleScreen: View {
             VStack {
                 // Title
                 CustomButton(
-                    title: "Math Matcher",
+                    title: "Math Mixer",
                     font: .largeTitle,
                     color: .blue
                 )
@@ -48,7 +58,7 @@ struct TitleScreen: View {
                         color: .green
                     )
 					}
-                    
+						
                     
                     
                     // Scoreboard button
@@ -70,10 +80,13 @@ struct TitleScreen: View {
 		.sheet(isPresented: $isSettingsVisible, content: {
 			SettingsForm(isSettingsVisible: $isSettingsVisible)
 		})
+		.sheet(isPresented: $isInfoVisible, content: {
+			InfoScreen(isInfoVisible: $isInfoVisible)
+		})
 
         
                 
-            
+            	
             
 
     }
